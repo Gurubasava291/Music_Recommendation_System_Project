@@ -38,3 +38,27 @@ class DNNClassifier(nn.Module):
         loss.backward()
         self.optimizer.step()
         return loss.item()
+
+    def fit(self, X, y, epochs=10, batch_size=32, verbose=True):
+        """
+        Train the model using X (features) and y (targets).
+        X, y can be numpy arrays or torch tensors.
+        """
+        from torch.utils.data import DataLoader, TensorDataset
+        
+        if not isinstance(X, torch.Tensor):
+            X = torch.tensor(X, dtype=torch.float32)
+        if not isinstance(y, torch.Tensor):
+            y = torch.tensor(y, dtype=torch.float32)
+            
+        dataset = TensorDataset(X, y)
+        dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        
+        for epoch in range(epochs):
+            total_loss = 0.0
+            for batch_X, batch_y in dataloader:
+                loss = self.update(batch_X, batch_y)
+                total_loss += loss
+                
+            if verbose and (epoch + 1) % max(1, epochs // 5) == 0:
+                print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(dataloader):.4f}")
