@@ -47,6 +47,10 @@ async def recommend(req: RecommendRequest):
         # Mocking DNN recommendations
         recs = random.sample(range(NUM_SONGS), req.k)
         return {"recommendations": recs, "model": "DNN Classifier"}
+    elif req.model_type == "rf":
+        # Mocking RF recommendations
+        recs = random.sample(range(NUM_SONGS), req.k)
+        return {"recommendations": recs, "model": "Random Forest Classifier"}
     else:
         raise HTTPException(status_code=400, detail="Invalid model_type")
 

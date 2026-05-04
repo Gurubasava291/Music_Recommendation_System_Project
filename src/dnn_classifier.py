@@ -80,4 +80,3 @@ class DNNClassifier(nn.Module):
         accuracy = (predicted_classes == y).float().mean().item()
         return accuracy
 
-    

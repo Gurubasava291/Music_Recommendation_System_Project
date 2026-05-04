@@ -1,0 +1,23 @@
+artifact_path: file:///C:/GURU/RV Notes/MLOps/MLOps CIE 3/RS using RL Project/mlruns/1/models/m-1ba42f537e424e2a801f7382c5f9bd9e/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.10.5
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.11.0+cpu
+mlflow_version: 3.10.1
+model_id: m-1ba42f537e424e2a801f7382c5f9bd9e
+model_size_bytes: 81247
+model_uuid: m-1ba42f537e424e2a801f7382c5f9bd9e
+prompts: null
+run_id: 2ae9cb8254b74ae98362001eebc873a9
+utc_time_created: '2026-05-04 13:39:02.107303'

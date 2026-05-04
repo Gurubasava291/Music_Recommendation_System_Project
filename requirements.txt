@@ -9,3 +9,4 @@ pennylane
 mlflow
 pytest
 httpx
+scikit-learn

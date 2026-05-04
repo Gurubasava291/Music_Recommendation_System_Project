@@ -76,5 +76,27 @@ def train_model():
         mlflow.pytorch.log_model(dnn_model.model, "dnn_model")
         print(f"DNN Training complete. Test Accuracy: {accuracy:.4f}")
 
+    # Train Random Forest Classifier
+    mlflow.set_experiment("Music_Recommender_RF")
+    with mlflow.start_run():
+        from src.rf_classifier import RFClassifier
+        import numpy as np
+        
+        # Mock dataset for RF (same structure as DNN)
+        X_train_rf = np.random.rand(1000, 2)
+        y_train_rf = np.random.randint(0, 2, 1000)
+        X_test_rf = np.random.rand(200, 2)
+        y_test_rf = np.random.randint(0, 2, 200)
+        
+        rf_model = RFClassifier(n_estimators=100)
+        print("Training Random Forest Classifier...")
+        
+        rf_model.fit(X_train_rf, y_train_rf)
+        
+        accuracy_rf = rf_model.score(X_test_rf, y_test_rf)
+        mlflow.log_metric("accuracy", accuracy_rf)
+        mlflow.sklearn.log_model(rf_model.model, "rf_model")
+        print(f"RF Training complete. Test Accuracy: {accuracy_rf:.4f}")
+
 if __name__ == "__main__":
     train_model()
