@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rl-recommender-deployment
+  labels:
+    app: rl-recommender
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rl-recommender
+  template:
+    metadata:
+      labels:
+        app: rl-recommender
+    spec:
+      containers:
+      - name: rl-recommender
+        image: gurubasava16/rl-recommender:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
