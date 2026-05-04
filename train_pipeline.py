@@ -50,7 +50,31 @@ def train_model():
             
         # 5. Save Model
         mlflow.pytorch.log_model(agent.model, "dqn_model")
-        print("Training complete. Model logged to MLflow.")
+        print("DQN Training complete. Model logged to MLflow.")
+
+    # Train DNN Classifier
+    mlflow.set_experiment("Music_Recommender_DNN")
+    with mlflow.start_run():
+        from src.dnn_classifier import DNNClassifier
+        import torch
+        
+        # Mock dataset for DNN (e.g. predicting user segment from 2 features)
+        X_train = torch.rand(1000, 2)
+        y_train = torch.randint(0, 2, (1000,)).float()
+        X_test = torch.rand(200, 2)
+        y_test = torch.randint(0, 2, (200,)).float()
+        
+        dnn_model = DNNClassifier(input_dim=2, hidden_dim=16, layers=2)
+        print("Training DNN Classifier...")
+        
+        # Use the newly added .fit() method
+        dnn_model.fit(X_train, y_train, epochs=10, batch_size=32)
+        
+        # Use the newly added .score() method
+        accuracy = dnn_model.score(X_test, y_test)
+        mlflow.log_metric("accuracy", accuracy)
+        mlflow.pytorch.log_model(dnn_model.model, "dnn_model")
+        print(f"DNN Training complete. Test Accuracy: {accuracy:.4f}")
 
 if __name__ == "__main__":
     train_model()
