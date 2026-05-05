@@ -1,0 +1,23 @@
+artifact_path: file:///C:/GURU/RV Notes/MLOps/MLOps CIE 3/RS using RL Project/mlruns/3/models/m-78a36f06eec4404999ba24f01750c330/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-78a36f06eec4404999ba24f01750c330
+model_size_bytes: 4571208
+model_uuid: m-78a36f06eec4404999ba24f01750c330
+prompts: null
+run_id: dcea4c3550d640a2b07a24f78bfb7f1f
+utc_time_created: '2026-05-05 05:41:31.911193'

@@ -80,7 +80,6 @@ def train_model():
     mlflow.set_experiment("Music_Recommender_RF")
     with mlflow.start_run():
         from src.rf_classifier import RFClassifier
-        import numpy as np
         
         # Mock dataset for RF (same structure as DNN)
         X_train_rf = np.random.rand(1000, 2)
